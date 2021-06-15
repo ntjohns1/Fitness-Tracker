@@ -22,12 +22,17 @@ const exerciseSchema = new Schema({
   },
   reps: {
     type: Number,
-    required: "Enter a duration"
   },
   sets: {
     type: Number,
-    required: "Enter a duration"
   },
+  distance: {
+    type: Number,
+  },
+  isCardio: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const Exercise = mongoose.model("Exercise", exerciseSchema);
