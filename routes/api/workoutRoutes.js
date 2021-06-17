@@ -23,11 +23,10 @@ router.put("/:id", ({ body }, res) => {
 });
 
 router.get("/", (req, res) => {
-  console.log(res);
   Workout.find({})
     .sort({ date: -1 })
     .then(dbWorkout => {
-      res.json(dbWorkout);
+      console.log(res.json(dbWorkout));
     })
     .catch(err => {
       res.status(400).json(err);
@@ -35,9 +34,16 @@ router.get("/", (req, res) => {
 });
 
 router.get("/range", (req, res) => {
-  console.log('butts');
-  Workout.find({})
-    .sort({ date: -1 })
+  console.log(Workout);
+  Workout.aggregate([
+
+    {
+      addFields: {
+        totalWeight: { $sum: "$exercises" }
+      }
+    }
+  ])
+    // .sort({ date: -1 })
     .then(dbWorkout => {
       res.json(dbWorkout);
     })

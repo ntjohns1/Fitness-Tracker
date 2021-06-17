@@ -35,6 +35,8 @@ const exerciseSchema = new Schema({
   }
 });
 
+// View the combined weight of multiple exercises from the past seven workouts on the stats page.
+
 const Exercise = mongoose.model("Exercise", exerciseSchema);
 
 module.exports = Exercise;
